@@ -11,9 +11,11 @@ import java.util.Date;
 public class OutWarehouse {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String gid;
 
-    @Id
     private String imei;
 
     private Date outtime;
@@ -26,6 +28,14 @@ public class OutWarehouse {
         this.gid = gid;
         this.imei = imei;
         this.outtime = outtime;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getGid() {
@@ -55,7 +65,8 @@ public class OutWarehouse {
     @Override
     public String toString() {
         return "OutWarehouse{" +
-                "gid='" + gid + '\'' +
+                "id=" + id +
+                ", gid='" + gid + '\'' +
                 ", imei='" + imei + '\'' +
                 ", outtime=" + outtime +
                 '}';

@@ -41,7 +41,6 @@ public class InWarehouseController {
             }
             InWarehouse inWarehouse = new InWarehouse(goods.getGid(), imei, new Date());
             inWarehouseRepository.save(inWarehouse);
-            System.out.println(inWarehouse);
             return true;
         } catch (Exception e) {
             e.printStackTrace();

@@ -1,6 +1,7 @@
 package app.controllers;
 
 import app.models.Goods;
+import app.models.InWarehouse;
 import app.models.OutWarehouse;
 import app.repositories.GoodsRepository;
 import app.repositories.InWarehouseRepository;
@@ -30,15 +31,16 @@ public class OutWarehouseController {
     private OutWarehouseRepository outWarehouseRepository;
 
     @RequestMapping(value = "/outGoods", method = RequestMethod.POST)
-    public boolean inGoods(@RequestBody Goods goods) {
+    public boolean outGoods(@RequestBody Goods goods) {
         try {
-            if (inWarehouseRepository.findByImei(goods.getGid()) == null) {
+            InWarehouse inWarehouse = inWarehouseRepository.findByImei(goods.getGid());
+            if (inWarehouse == null) {
                 return false;
             } else if (outWarehouseRepository.findByImei(goods.getGid()) != null) {
                 return false;
             }
             String imei = goods.getGid();
-            goods = goodsRepository.findByName(goods.getName());
+            goods = goodsRepository.findOne(inWarehouse.getGid());
             outWarehouseRepository.save(new OutWarehouse(goods.getGid(), imei, new Date()));
             return true;
         } catch (Exception e) {

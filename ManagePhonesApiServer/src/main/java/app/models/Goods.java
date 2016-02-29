@@ -12,8 +12,8 @@ import javax.persistence.*;
 public class Goods {
 
     @Id
-    @GenericGenerator(name = "idGenerator", strategy = "uuid") //这个是hibernate的注解/生成32位UUID
-    @GeneratedValue(generator = "idGenerator")
+    @GeneratedValue(generator = "uuid")   //指定生成器名称
+    @GenericGenerator(name = "uuid", strategy = "org.hibernate.id.UUIDGenerator")  //生成器名称，uuid生成类
     private String gid;
 
     private String name;
