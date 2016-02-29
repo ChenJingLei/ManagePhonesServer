@@ -11,9 +11,9 @@ import java.util.Date;
 public class OutWarehouse {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String gid;
 
+    @Id
     private String imei;
 
     private Date outtime;
@@ -22,32 +22,25 @@ public class OutWarehouse {
     public OutWarehouse() {
     }
 
-    public OutWarehouse(String imei, Date outtime) {
+    public OutWarehouse(String gid, String imei, Date outtime) {
+        this.gid = gid;
         this.imei = imei;
         this.outtime = outtime;
     }
 
-    public Long getId() {
-        return id;
+    public String getGid() {
+        return gid;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setImei(String imei) {
-        this.imei = imei;
+    public void setGid(String gid) {
+        this.gid = gid;
     }
 
     public String getImei() {
         return imei;
     }
 
-    public String getimei() {
-        return imei;
-    }
-
-    public void setimei(String imei) {
+    public void setImei(String imei) {
         this.imei = imei;
     }
 
@@ -62,7 +55,7 @@ public class OutWarehouse {
     @Override
     public String toString() {
         return "OutWarehouse{" +
-                "id=" + id +
+                "gid='" + gid + '\'' +
                 ", imei='" + imei + '\'' +
                 ", outtime=" + outtime +
                 '}';

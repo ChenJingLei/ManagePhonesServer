@@ -12,9 +12,9 @@ import javax.persistence.*;
 public class Goods {
 
     @Id
-    @GenericGenerator(name="idGenerator", strategy="uuid") //这个是hibernate的注解/生成32位UUID
-    @GeneratedValue(generator="idGenerator")
-    private String id;
+    @GenericGenerator(name = "idGenerator", strategy = "uuid") //这个是hibernate的注解/生成32位UUID
+    @GeneratedValue(generator = "idGenerator")
+    private String gid;
 
     private String name;
 
@@ -25,12 +25,12 @@ public class Goods {
         this.name = name;
     }
 
-    public String getId() {
-        return id;
+    public String getGid() {
+        return gid;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setGid(String gid) {
+        this.gid = gid;
     }
 
     public String getName() {
@@ -44,7 +44,7 @@ public class Goods {
     @Override
     public String toString() {
         return "Goods{" +
-                "id='" + id + '\'' +
+                "gid='" + gid + '\'' +
                 ", name='" + name + '\'' +
                 '}';
     }

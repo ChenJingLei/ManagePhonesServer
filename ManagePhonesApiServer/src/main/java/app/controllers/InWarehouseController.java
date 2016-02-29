@@ -2,10 +2,8 @@ package app.controllers;
 
 import app.models.Goods;
 import app.models.InWarehouse;
-import app.models.Warehouse;
 import app.repositories.GoodsRepository;
 import app.repositories.InWarehouseRepository;
-import app.repositories.WarehouseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,25 +25,22 @@ public class InWarehouseController {
     @Autowired
     private InWarehouseRepository inWarehouseRepository;
 
-    @Autowired
-    private WarehouseRepository warehouseRepository;
 
     @RequestMapping(value = "/inGoods", method = RequestMethod.POST)
     public boolean inGoods(@RequestBody Goods goods) {
+        //用户传入的是imei码和goods名称
         try {
-            if (inWarehouseRepository.findByImei(goods.getId()) != null) {
+            if (inWarehouseRepository.findByImei(goods.getGid()) != null) {
                 return false;
             }
-
+            String imei = goods.getGid();
             if (goodsRepository.findByName(goods.getName()) == null) {
                 goods = goodsRepository.save(goods);
             } else {
                 goods = goodsRepository.findByName(goods.getName());
             }
-            InWarehouse inWarehouse = new InWarehouse(goods.getId(), new Date());
-            inWarehouse = inWarehouseRepository.save(inWarehouse);
-            Warehouse warehouse = new Warehouse(inWarehouse.getImei(), goods.getId());
-            warehouseRepository.save(warehouse);
+            InWarehouse inWarehouse = new InWarehouse(goods.getGid(), imei, new Date());
+            inWarehouseRepository.save(inWarehouse);
             System.out.println(inWarehouse);
             return true;
         } catch (Exception e) {

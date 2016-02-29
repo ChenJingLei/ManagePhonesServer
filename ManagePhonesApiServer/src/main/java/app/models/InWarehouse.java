@@ -11,9 +11,9 @@ import java.util.Date;
 public class InWarehouse {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String gid;
 
+    @Id
     private String imei;
 
     private Date intime;
@@ -21,17 +21,18 @@ public class InWarehouse {
     public InWarehouse() {
     }
 
-    public InWarehouse(String imei, Date intime) {
+    public InWarehouse(String gid, String imei, Date intime) {
+        this.gid = gid;
         this.imei = imei;
         this.intime = intime;
     }
 
-    public Long getId() {
-        return id;
+    public String getGid() {
+        return gid;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setGid(String gid) {
+        this.gid = gid;
     }
 
     public String getImei() {
@@ -39,14 +40,6 @@ public class InWarehouse {
     }
 
     public void setImei(String imei) {
-        this.imei = imei;
-    }
-
-    public String getimei() {
-        return imei;
-    }
-
-    public void setimei(String imei) {
         this.imei = imei;
     }
 
@@ -61,7 +54,7 @@ public class InWarehouse {
     @Override
     public String toString() {
         return "InWarehouse{" +
-                "id=" + id +
+                "gid='" + gid + '\'' +
                 ", imei='" + imei + '\'' +
                 ", intime=" + intime +
                 '}';

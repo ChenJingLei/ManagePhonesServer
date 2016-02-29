@@ -1,13 +1,11 @@
 package app.controllers;
 
-import app.models.Goods;
 import app.models.InWarehouse;
 import app.models.OutWarehouse;
 import app.models.Record;
 import app.repositories.GoodsRepository;
 import app.repositories.InWarehouseRepository;
 import app.repositories.OutWarehouseRepository;
-import app.repositories.WarehouseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,8 +30,6 @@ public class RecordController {
     @Autowired
     private OutWarehouseRepository outWarehouseRepository;
 
-    @Autowired
-    private WarehouseRepository warehouseRepository;
 
     @RequestMapping(value = "/getRecordById/{Id}")
     public List<Record> getRecordById(@PathVariable("Id") String Id) {

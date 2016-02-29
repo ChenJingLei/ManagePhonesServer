@@ -5,7 +5,6 @@ import app.models.OutWarehouse;
 import app.repositories.GoodsRepository;
 import app.repositories.InWarehouseRepository;
 import app.repositories.OutWarehouseRepository;
-import app.repositories.WarehouseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,24 +21,25 @@ import java.util.Date;
 public class OutWarehouseController {
 
     @Autowired
+    private GoodsRepository goodsRepository;
+
+    @Autowired
     private InWarehouseRepository inWarehouseRepository;
 
     @Autowired
     private OutWarehouseRepository outWarehouseRepository;
 
-    @Autowired
-    private WarehouseRepository warehouseRepository;
-
     @RequestMapping(value = "/outGoods", method = RequestMethod.POST)
     public boolean inGoods(@RequestBody Goods goods) {
         try {
-            if (inWarehouseRepository.findByImei(goods.getId()) == null) {
+            if (inWarehouseRepository.findByImei(goods.getGid()) == null) {
                 return false;
-            } else if (outWarehouseRepository.findByImei(goods.getId()) != null) {
+            } else if (outWarehouseRepository.findByImei(goods.getGid()) != null) {
                 return false;
             }
-            outWarehouseRepository.save(new OutWarehouse(goods.getId(), new Date()));
-            warehouseRepository.delete(goods.getId());
+            String imei = goods.getGid();
+            goods = goodsRepository.findByName(goods.getName());
+            outWarehouseRepository.save(new OutWarehouse(goods.getGid(), imei, new Date()));
             return true;
         } catch (Exception e) {
             e.printStackTrace();
