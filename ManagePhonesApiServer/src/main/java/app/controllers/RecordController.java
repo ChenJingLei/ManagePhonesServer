@@ -39,30 +39,32 @@ public class RecordController {
         OutWarehouse outWarehouse = outWarehouseRepository.findByImei(Gid);
         if (inWarehouse != null) {
             Goods goods = goodsRepository.findOne(inWarehouse.getGid());
-            list.add(new Record(Gid, goods.getName(), inWarehouse.getIntime(), 0));
+            list.add(new Record(inWarehouse.getImei(), goods.getName(), inWarehouse.getIntime(), 0));
         }
         if (outWarehouse != null) {
             Goods goods = goodsRepository.findOne(outWarehouse.getGid());
-            list.add(new Record(Gid, goods.getName(), outWarehouse.getOuttime(), 1));
+            list.add(new Record(outWarehouse.getImei(), goods.getName(), outWarehouse.getOuttime(), 1));
         }
         return list;
     }
 
     @RequestMapping(value = "/getRecordByName/{Name}")
     public List<Record> getRecordByName(@PathVariable("Name") String Name) {
-        Goods goods = goodsRepository.findByName(Name);
+        List<Goods> goodsList = goodsRepository.findByNameLike(Name);
         List<Record> list = new ArrayList<>();
-        if (goods != null) {
-            List<InWarehouse> inWarehouses = inWarehouseRepository.findByGid(goods.getGid());
-            List<OutWarehouse> outWarehouses = outWarehouseRepository.findByGid(goods.getGid());
-            if (inWarehouses != null) {
-                for (InWarehouse in : inWarehouses) {
-                    list.add(new Record(in.getImei(), Name, in.getIntime(), 0));
+        if (goodsList != null) {
+            for (Goods goods : goodsList) {
+                List<InWarehouse> inWarehouses = inWarehouseRepository.findByGid(goods.getGid());
+                List<OutWarehouse> outWarehouses = outWarehouseRepository.findByGid(goods.getGid());
+                if (inWarehouses != null) {
+                    for (InWarehouse in : inWarehouses) {
+                        list.add(new Record(in.getImei(), goods.getName(), in.getIntime(), 0));
+                    }
                 }
-            }
-            if (outWarehouses != null) {
-                for (OutWarehouse out : outWarehouses) {
-                    list.add(new Record(out.getImei(), Name,out.getOuttime(), 1));
+                if (outWarehouses != null) {
+                    for (OutWarehouse out : outWarehouses) {
+                        list.add(new Record(out.getImei(), goods.getName(), out.getOuttime(), 1));
+                    }
                 }
             }
         }

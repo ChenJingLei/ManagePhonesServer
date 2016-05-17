@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ManagePhonesApiServer/ManagePhonesApiServer.iml" filepath="$PROJECT_DIR$/ManagePhonesApiServer/ManagePhonesApiServer.iml" />
       <module fileurl="file://$PROJECT_DIR$/ManagePhonesServer.iml" filepath="$PROJECT_DIR$/ManagePhonesServer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ManagePhonesWeb/ManagePhonesWeb.iml" filepath="$PROJECT_DIR$/ManagePhonesWeb/ManagePhonesWeb.iml" />
     </modules>
   </component>
 </project>

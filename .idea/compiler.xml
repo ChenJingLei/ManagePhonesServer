@@ -23,11 +23,13 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="ManagePhonesApiServer" />
+        <module name="ManagePhonesWeb" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="ManagePhonesApiServer" target="1.8" />
       <module name="ManagePhonesServer" target="1.6" />
+      <module name="ManagePhonesWeb" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

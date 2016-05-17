@@ -1,0 +1,71 @@
+﻿<!doctype html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登陆</title>
+    <script src="/js/jquery-2.2.3.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/default.css"/>
+    <!--[if IE]>
+    <script src="http://libs.useso.com/js/html5shiv/3.7/html5shiv.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#login").click(function () {
+            $.ajax({
+                type: "post",
+                url: "/user/login",
+                data: JSON.stringify(
+                        {
+                            username: $("#username").val(),
+                            password: $("#password").val()
+                        }),
+                contentType: 'application/json',
+                async: true,
+                success: function (data) {
+                    if (data == "login") {
+                        alert("用户名或密码错误");
+                    } else {
+                        alert("登陆成功");
+                    }
+                    window.location.href = "/" + data;
+                },
+                error: function (data, status, e) {
+                    alert(e);
+                }
+            });
+        });
+    });
+</script>
+<article class="htmleaf-container">
+    <header class="htmleaf-header">
+
+        <div class="htmleaf-links">
+
+        </div>
+    </header>
+    <div class="panel-lite">
+        <div class="thumbur">
+            <div class="icon-lock"></div>
+        </div>
+        <h4>用户登录</h4>
+        <div class="form-group">
+            <input required class="form-control" id="username"/>
+            <label class="form-label">用户名 </label>
+        </div>
+        <div class="form-group">
+            <input type="password" required class="form-control" id="password"/>
+            <label class="form-label">密　码</label>
+        </div>
+        <button class="floating-btn" id="login"><i class="icon-arrow"></i></button>
+
+    </div>
+
+</article>
+
+</body>
+</html>
