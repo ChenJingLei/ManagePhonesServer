@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>Test</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+</head>
+<body>
+    <!--<div class="container">-->
+
+    <!--</div>-->
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-6" >
+                <div class="input-group">
+                <span class="input-group-addon" id="basic-id">Id</span>
+                <input type="text" class="form-control" placeholder="id" aria-describedby="basic-id">
+                </div>
+                <div class="input-group">
+                <span class="input-group-addon" id="basic-name">name</span>
+                <input type="text" class="form-control" placeholder="name" aria-describedby="basic-name">
+                </div>
+                <div class="input-group">
+                <span class="input-group-addon" id="basic-tgender">tgender</span>
+                <input type="text" class="form-control" placeholder="tgender" aria-describedby="basic-tgender">
+                </div>
+                <div class="input-group">
+                <span class="input-group-addon" id="basic-tother">tother</span>
+                <input type="text" class="form-control" placeholder="tother" aria-describedby="basic-tother">
+                </div>
+                <div class="btn-group" role="group" >
+                <button type="button" class="btn btn-default btn-primary" id="btn">提交</button>
+                </div>
+            </div>
+            <div class="col-xs-6">
+
+            </div>
+        </div>
+    </div>
+
+
+    <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $("#btn").click(function () {
+                $.ajax({
+                    type:"post",
+                    url: "/addtest",
+                    contentType: 'application/json; charset=UTF-8',
+                    data:JSON.stringify(
+                    {
+                        "name":"234",
+                        "gender":"234",
+                        "other":"234"
+                    }),
+                    success:function (data) {
+
+                    }
+                });
+
+            });
+        })
+    </script>
+
+
+</body>
+</html>

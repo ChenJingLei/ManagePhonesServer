@@ -6,7 +6,7 @@
 html {
 	position: relative;
 	font-family: '宋体', sans-serif;
-	background-color: #303F9F;
+	background-color: #303F9F; !important;
 }
 
 .thumbur {
@@ -109,9 +109,10 @@ html {
   position: relative;
   font-size: 15px;
   color: #666;
+  margin-top: 50px;
 }
 .form-group + .form-group {
-  margin-top: 30px;
+  margin-top: 80px;
 }
 .form-group .form-label {
   position: absolute;

@@ -31,4 +31,5 @@ public class PhoneController {
     public String showNavPage() {
         return "views/nav";
     }
+
 }

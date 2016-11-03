@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
  * Created by cjl20 on 2016/5/16.
  */
@@ -26,5 +28,19 @@ public class UserController {
             return "login";
         }
         return "main";
+    }
+
+    @RequestMapping(value = "/checkExists", method = RequestMethod.POST)
+    public boolean checkExists(@RequestBody User user) {
+        if (user.getUsername() != null && user.getPassword() == null) {
+            //存在用户么
+            List<User> checkUsers = userRepository.findOneByUsername(user.getUsername());
+            return (checkUsers.size() > 0);
+        } else if (user.getPassword() != null) {
+            //是否有用户信息
+            User checkUser = userRepository.findOneByUsernameAndPassword(user.getUsername(), user.getPassword());
+            return checkUser == null;
+        }
+        return false;
     }
 }

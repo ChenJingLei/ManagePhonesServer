@@ -14,6 +14,9 @@ phoneSystemControllers.controller('PhoneListCtrl', ['$scope', '$http',
             $http.get('/phones/deleteById/' + id).success(function (data) {
                 if (data == "true") {
                     alert("删除成功");
+                    $http.get('/phones/getAll').success(function (data) {
+                        $scope.phones = data;
+                    });
                 } else {
                     alert("删除失败");
                 }

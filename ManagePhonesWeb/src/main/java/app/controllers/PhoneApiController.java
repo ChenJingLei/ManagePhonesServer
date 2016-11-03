@@ -35,8 +35,7 @@ public class PhoneApiController {
     @RequestMapping(value = "/updateOne", method = RequestMethod.POST)
     public boolean updateOne(@RequestBody Phone phone) {
         try {
-            phone.setId(1);
-            Phone phone1 = phoneRepository.save(phone);
+            phoneRepository.save(phone);
         } catch (Exception e) {
             return false;
         }
